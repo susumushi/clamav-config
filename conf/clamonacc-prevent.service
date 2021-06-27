@@ -1,0 +1,12 @@
+[Unit]
+Description=ClamAV OnAccess Scanning Serivce
+Before=clamav-daemon.service
+
+[Service]
+User=root
+ExecStart=/usr/sbin/clamonacc --config-file=/etc/clamav/prevent.conf --log=/var/log/clamav/prevent.log --fdpass --foreground
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
