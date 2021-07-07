@@ -1,7 +1,10 @@
 install:
 	sudo cp -f conf/clamd.conf /etc/clamav/
 	sudo cp -f conf/prevent.conf /etc/clamav/
-	sudo cp -f conf/detected.sh /etc/clamav/virusevent.d/
+#sudo cp -f conf/detected.sh /etc/clamav/virusevent.d/
+	curl `curl  https://api.github.com/repos/susumushi/clam-desktop-notifier/releases/latest | jq -r .assets[].browser_download_url` -L -o /etc/clamav/virusevent.d/clamnotify
+	chown root:clamav /etc/clamav/virusevent.d/clamnotify
+	chmod 4755 /etc/clamav/virusevent.d/clamnotify
 	sudo cp -f conf/clamonacc-prevent.service /etc/systemd/system/
 	sudo cp -f conf/clamonacc-notifyonly.service /etc/systemd/system/
 	sudo systemctl daemon-reload
