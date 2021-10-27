@@ -22,4 +22,10 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get install clamav clamav-daemon -y
   SHELL
+
+  # for fangfrisch
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get install python3 python3-pip python3-venv -y
+  SHELL
+
 end
